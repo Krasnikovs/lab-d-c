@@ -1,0 +1,3 @@
+Izveidot programmu valodā C++, obligāti izmantojot norādītās vai kādas citas funkcijas. Prasības tādas pašas kā iepriekšējā uzdevumā, precīzāk sk. Laboratorijas darbu noteikumos.
+
+C1. Virkni a(1..n) sauc par monotonu, ja a(1)<=a(2)<=...<=a(n) vai a(1)>=a(2)>=...>=a(n). Dots veselu skaitļu masīvs A(m). Noskaidrot garāko tajā sastopamo monotono virkni. Izveidot un izmantot funkciju, kas nosaka masīvā sastopamās monotonas virknes garumu, sākot no elementa ar indeksu i.
