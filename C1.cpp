@@ -8,22 +8,36 @@ Programma izveidota:
 #include <iostream>
 using namespace std;
 
-int mono(int A[8], int i, int sizeOfArr) {
-    
+int* mono(int A[8], int i, int sizeOfArr) {
     int count = 0;
     int rev_count = 0;
+    int* mono_run = new int;
+    int* rev_mono_run = new int;
+    int* longest_mono_run = new int;
+    int* longest_rev_mono_run = new int;
 
-    for (i; i < sizeOfArr; i++) {
-        if (A[i] <= A[i + 1]) {
-            count += 1;
+    for (int j = i; j < sizeOfArr; j++) {
+        if (j == sizeOfArr - 1) {
+            longest_mono_run = mono_run;
+        } else if (A[i] <= A[i + 1]) {
+            mono_run[i] = A[i];
+            count++;
+            continue;
         } else if (A[i] > A[i + 1]) {
+            longest_mono_run = mono_run;
             int longest_count = count;
             count = 0;
         }
 
+    }
+
+    for (int j = i; j < sizeOfArr; j++) {
         if (A[i] >= A[i + 1]) {
+            rev_mono_run[rev_count] = A[i];
             rev_count++;
+            continue;
         } else if (A[i] < A[i + 1]) {
+            longest_rev_mono_run = rev_mono_run;
             int longest_rev_count = rev_count;
             rev_count = 0;
         }
@@ -32,23 +46,35 @@ int mono(int A[8], int i, int sizeOfArr) {
     }
 
     if (count >= rev_count) {
-        return count;
+        return longest_mono_run;
     } else {
-        return rev_count;
+        return longest_rev_mono_run;
     }
 }
 
 int main() {
-    int A[] = {4, 2, 8, 1, 3, 5, 15, 0};
+    int length;
+    int* A = new int;
 
-    int i;
-    cin >> i;
+    int i = 0;
 
-    int sizeOfArr = sizeof(A)/sizeof(A[0]);
+    cout << "Ievadiet virknes garumu: ";
+    cin >> length;
 
-    int count = mono(A, i - 1, sizeOfArr);
+    for (int i = 0; i < length; i++) {
+        cout << "Ievadiet velamo vertibu: ";
+        cin >> A[i];
+    }
 
-    cout << count << endl;
+    // int sizeOfArr = sizeof(A)/sizeof(A[0]);
+
+    int* mono_run = mono(A, i, length);
+
+    int sizeOfMono = sizeof(mono_run)/sizeof(mono_run[0]);
+
+    for (int i = 0; i < sizeOfMono; i++) {
+        cout << mono_run[i] << endl;
+    }
 
     return 0;
 }
